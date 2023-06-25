@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import dummydata from "../dummyData"
 import Card from './Card';
+import {v4 as uuidv4} from 'uuid';
 
 const Main = () => {
     const [data, setdata] = useState(dummydata);
+    const [newTask, setNewTask] = useState("");
 
     const onDragEnd = (result) => {
       const { source, destination } = result;
@@ -45,6 +47,29 @@ const Main = () => {
       }
     };
 
+     const handleInputChange= (e) => {
+      setNewTask(e.target.value);
+     }
+
+     const handelTaskAdd = (sectionId) => {
+      const newId = uuidv4();
+      const newDataTask = { id: newId, title: newTask};
+
+      setdata(prevData => {
+        return prevData.map(section => {
+          if(section.id === sectionId){
+            return{
+              ...section,
+              tasks: [...section.tasks, newDataTask]
+            }
+          } else {
+            return section
+          }
+        })
+      });
+      setNewTask("");
+     }
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
         <div className='trello'>
@@ -57,6 +82,13 @@ const Main = () => {
                   {...provided.droppableProps}
                   >
                     <div className='trello-setion-title'>{section.title}</div>
+                    <input
+                    type='text'
+                    value={newTask}
+                    onChange={handleInputChange}
+                    placeholder='New Task'
+                    />
+                    <button onClick={() => handelTaskAdd(section.id)}>Add Task</button>
                     <div className='trello-section-content'>
                       {section.tasks.map((task, index) => (
                         <Draggable 
