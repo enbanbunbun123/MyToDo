@@ -103,7 +103,7 @@ const Main = () => {
                   <button 
                   className='trello-input-button'
                   onClick={() => handelTaskAdd(section.id)}
-                  >Add Task</button>
+                  >Add</button>
                   <div className='trello-section-content'>
                     {section.tasks.map((task, index) => (
                       <Draggable 
