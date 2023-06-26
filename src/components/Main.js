@@ -11,8 +11,10 @@ const Main = () => {
     const onDragEnd = (result) => {
       const { source, destination } = result;
 
+      if(!destination) return;
+
       // 別のカラムにタスクを移動
-      if(source.droppableId !== destination.draggableId){
+      if(source.droppableId !== destination.droppableId){
         const sourceColIndex = data.findIndex((e) => e.id === source.droppableId);
         const destinationColIndex = data.findIndex((e) => e.id === destination.droppableId);
 
@@ -24,36 +26,44 @@ const Main = () => {
 
         // 動かすタスクの削除
         const [removed] = sourceTask.splice(source.index, 1);
+        
         // 動かした後のカラムにタスクを追加
         destinationTask.splice(destination.index, 0, removed);
-  
-        data[ sourceColIndex ].tasks = sourceTask;
-        data[ destinationColIndex ].tasks = destinationTask;
 
-        setdata(data);
+        const newData = [...data];
+        newData[ sourceColIndex ] = { ...sourceCol, tasks: sourceTask};
+        newData[ destinationColIndex ] = {...destinationCol, tasks: destinationTask};
+  
+        // data[ sourceColIndex ].tasks = sourceTask;
+        // data[ destinationColIndex ].tasks = destinationTask;
+
+        setdata(newData);
       } else {
         // 同じカラム内での移動
         const sourceColIndex = data.findIndex((e) => e.id === source.droppableId);
-        const sourceCol = data[sourceColIndex];
+        const sourceCol = data[ sourceColIndex ];
   
         const sourceTask = [...sourceCol.tasks]
         // タスクの削除
         const [removed] = sourceTask.splice(source.index, 1);
         // タスクの追加
         sourceTask.splice(destination.index, 0, removed);
+
+        const newData = [...data];
+        newData[ sourceColIndex ] = {...sourceCol, tasks: sourceTask};
   
-        data[ sourceColIndex ].tasks = sourceTask;
-        setdata(data);
+        // data[ sourceColIndex ].tasks = sourceTask;
+        setdata(newData);
       }
     };
 
-     const handleInputChange= (e) => {
+    const handleInputChange= (e) => {
       setNewTask(e.target.value);
-     }
+    }
 
-     const handelTaskAdd = (sectionId) => {
+    const handelTaskAdd = (sectionId) => {
       const newId = uuidv4();
-      const newDataTask = { id: newId, title: newTask};
+      const newDataTask = { id: newId, title: newTask };
 
       setdata(prevData => {
         return prevData.map(section => {
@@ -68,7 +78,7 @@ const Main = () => {
         })
       });
       setNewTask("");
-     }
+    }
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
