@@ -47,5 +47,15 @@ body {
   background: rgb(145, 137, 145);
   background: linear-gradient(126deg, rgb(79, 73, 79) 0%, rgb(68, 64, 69) 96%);
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
+}
+
+.trello-input-text{
+  padding: 5px;
+  margin: 5px;
+}
+
+.trello-input-button{
+  padding: 5px;
+  /* margin: 5px; */
 }

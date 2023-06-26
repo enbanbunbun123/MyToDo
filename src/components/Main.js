@@ -11,7 +11,7 @@ const Main = () => {
     const onDragEnd = (result) => {
       const { source, destination } = result;
 
-      if(!destination) return;
+      // if(!destination) return;
 
       // 別のカラムにタスクを移動
       if(source.droppableId !== destination.droppableId){
@@ -81,54 +81,61 @@ const Main = () => {
     }
 
   return (
+    <>
     <DragDropContext onDragEnd={onDragEnd}>
-        <div className='trello'>
-            {data.map((section) => (
-                <Droppable key={section.id} droppableId={section.id}>
-                {(provided) => (
-                <div 
-                  className='trello-section'
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                  >
-                    <div className='trello-setion-title'>{section.title}</div>
-                    <input
-                    type='text'
-                    value={newTask}
-                    onChange={handleInputChange}
-                    placeholder='New Task'
-                    />
-                    <button onClick={() => handelTaskAdd(section.id)}>Add Task</button>
-                    <div className='trello-section-content'>
-                      {section.tasks.map((task, index) => (
-                        <Draggable 
-                          draggableId={task.id} 
-                          index={index} 
-                          key={task.id}
-                        >
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={{
-                                ...provided.draggableProps.style,
-                                opacity: snapshot.isDragging ? "0.3" : "1",
-                              }}
-                            >
-                              <Card>{task.title}</Card>
-                            </div>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
+      <div className='trello'>
+          {data.map((section) => (
+              <Droppable key={section.id} droppableId={section.id}>
+              {(provided) => (
+              <div 
+                className='trello-section'
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                >
+                  <div className='trello-setion-title'>{section.title}</div>
+                  <input
+                  className='trello-input-text'
+                  type='text'
+                  value={newTask}
+                  onChange={handleInputChange}
+                  placeholder='New Task'
+                  />
+                  <button 
+                  className='trello-input-button'
+                  onClick={() => handelTaskAdd(section.id)}
+                  >Add Task</button>
+                  <div className='trello-section-content'>
+                    {section.tasks.map((task, index) => (
+                      <Draggable 
+                        draggableId={task.id} 
+                        index={index} 
+                        key={task.id}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={{
+                              ...provided.draggableProps.style,
+                              opacity: snapshot.isDragging ? "0.7" : "1",
+                            }}
+                          >
+                            <Card>{task.title}</Card>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
                   </div>
-                )}
-                </Droppable>
-            ))}
-        </div>
+                </div>
+              )}
+              </Droppable>
+          ))}
+      </div>
     </DragDropContext>
+    </>
+
   )
 }
 
