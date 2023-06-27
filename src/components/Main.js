@@ -67,7 +67,8 @@ const Main = () => {
 
       setdata(prevData => {
         return prevData.map(section => {
-          if(section.id === sectionId){
+          // if(section.id === sectionId){
+          if(section.title === "今からやること"){
             return{
               ...section,
               tasks: [...section.tasks, newDataTask]
@@ -83,9 +84,21 @@ const Main = () => {
   return (
     <>
     <DragDropContext onDragEnd={onDragEnd}>
+      <input
+        className='trello-input-text'
+        type='text'
+        value={newTask}
+        onChange={handleInputChange}
+        placeholder='New Task'
+      />
+      <button 
+        className='trello-input-button'
+        // onClick={() => handelTaskAdd(section.id)}
+        onClick={() => handelTaskAdd("今からやること")}
+      >Add</button>
       <div className='trello'>
           {data.map((section) => (
-              <Droppable key={section.id} droppableId={section.id}>
+            <Droppable key={section.id} droppableId={section.id}>
               {(provided) => (
               <div 
                 className='trello-section'
@@ -93,17 +106,6 @@ const Main = () => {
                 {...provided.droppableProps}
                 >
                   <div className='trello-setion-title'>{section.title}</div>
-                  <input
-                  className='trello-input-text'
-                  type='text'
-                  value={newTask}
-                  onChange={handleInputChange}
-                  placeholder='New Task'
-                  />
-                  <button 
-                  className='trello-input-button'
-                  onClick={() => handelTaskAdd(section.id)}
-                  >Add</button>
                   <div className='trello-section-content'>
                     {section.tasks.map((task, index) => (
                       <Draggable 
@@ -130,7 +132,7 @@ const Main = () => {
                   </div>
                 </div>
               )}
-              </Droppable>
+            </Droppable>
           ))}
       </div>
     </DragDropContext>
