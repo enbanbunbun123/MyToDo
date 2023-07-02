@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid4 } from 'uuid';
 
-export default function CreateTask ({data, setData}) {
+export default function CreateTask ({data, setdata}) {
     const [newTask, setNewTask] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const history = useNavigate();
@@ -19,7 +19,7 @@ export default function CreateTask ({data, setData}) {
         const newId = uuid4();
         const newDataTask = {id: newId, title: newTask, description: newDescription};
 
-        setData(prevData => {
+        setdata(prevData => {
             return prevData.map(section => {
                 if(section.title === "今からやること"){
                     return{
@@ -33,7 +33,7 @@ export default function CreateTask ({data, setData}) {
         });
         setNewTask("");
         setNewDescription("");
-        history.push("/");
+        history("/");
     }
 
     return (
