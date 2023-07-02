@@ -8,15 +8,16 @@ const dummyDate = [
             {
                 id: uuidv4(),
                 title: "reactの勉強",
+                deiscription: "９時から",
             },
-            {
-                id: uuidv4(),
-                title: "youtubeで勉強",
-            },
-            {
-                id: uuidv4(),
-                title: "散歩",
-            },
+            // {
+            //     id: uuidv4(),
+            //     title: "youtubeで勉強",
+            // },
+            // {
+            //     id: uuidv4(),
+            //     title: "散歩",
+            // },
         ],
     },
     {
@@ -26,15 +27,16 @@ const dummyDate = [
             {
                 id: uuidv4(),
                 title: "typeScriptの勉強",
+                deiscription: "９時から",
             },
-            {
-                id: uuidv4(),
-                title: "スマホで勉強",
-            },
-            {
-                id: uuidv4(),
-                title: "ランニング",
-            },
+            // {
+            //     id: uuidv4(),
+            //     title: "スマホで勉強",
+            // },
+            // {
+            //     id: uuidv4(),
+            //     title: "ランニング",
+            // },
         ],
     },
     {
@@ -44,15 +46,16 @@ const dummyDate = [
             {
                 id: uuidv4(),
                 title: "gitの勉強",
+                deiscription: "９時から",
             },
-            {
-                id: uuidv4(),
-                title: "教科書で勉強",
-            },
-            {
-                id: uuidv4(),
-                title: "風呂",
-            },
+            // {
+            //     id: uuidv4(),
+            //     title: "教科書で勉強",
+            // },
+            // {
+            //     id: uuidv4(),
+            //     title: "風呂",
+            // },
         ],
     },
 ];
