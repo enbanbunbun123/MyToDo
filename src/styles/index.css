@@ -6,12 +6,6 @@
 
 body {
   background: rgb(237, 236, 236);
-  /* background: rgb(61, 93, 189); */
-  /* background: linear-gradient(
-    126deg,
-    rgba(61, 93, 189, 1) 0%,
-    rgba(33, 63, 107, 1) 96%
-  ); */
   height: 100vh;
   color: #e4e4e4;
   line-height: 1.5;
@@ -25,16 +19,14 @@ body {
 
 .trello-section {
   width: 400px;
-  /* border: 1px solid white; */
   background: #707070;
-  /* background: linear-gradient(
-    126deg,
-    rgba(30, 25, 31, 1) 0%,
-    rgba(51, 45, 54, 1) 96%
-  ); */
   padding: 10px;
   border-radius: 10px;
   margin-left: 10px;
+}
+
+.trello-section:first-child{
+  margin-left: 0;
 }
 
 .trello-section-title {
@@ -47,7 +39,6 @@ body {
   padding: 30px;
   color: #707070;
   background: #60E2B8;
-  /* background: linear-gradient(126deg, rgb(79, 73, 79) 0%, rgb(68, 64, 69) 96%); */
   border-radius: 10px;
   margin-top: 5px;
 }
@@ -57,6 +48,12 @@ body {
   margin: 5px;
 }
 
-.trello-input-button{
-  padding: 5px;
+.trello-input-button-addTask{
+  font-size: 15px;
+  padding: 10px 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }

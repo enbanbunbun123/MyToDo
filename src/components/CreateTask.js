@@ -5,7 +5,7 @@ import { v4 as uuid4 } from 'uuid';
 export default function CreateTask ({data, setdata}) {
     const [newTask, setNewTask] = useState("");
     const [newDescription, setNewDescription] = useState("");
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleTaskchange = (e) => {
         setNewTask(e.target.value);
@@ -33,7 +33,7 @@ export default function CreateTask ({data, setdata}) {
         });
         setNewTask("");
         setNewDescription("");
-        history("/");
+        navigate("/");
     }
 
     return (
@@ -53,7 +53,7 @@ export default function CreateTask ({data, setdata}) {
             placeholder='Task Description'
         />
         <button
-        className='trello-input-button'
+        className='trello-input-button-add'
         onClick={handelTaskAdd}
         >Add</button>
         </>

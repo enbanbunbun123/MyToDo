@@ -8,7 +8,7 @@ const dummyDate = [
             {
                 id: uuidv4(),
                 title: "reactの勉強",
-                deiscription: "９時から",
+                description: "９時から",
             },
             // {
             //     id: uuidv4(),
@@ -27,7 +27,7 @@ const dummyDate = [
             {
                 id: uuidv4(),
                 title: "typeScriptの勉強",
-                deiscription: "９時から",
+                description: "９時から",
             },
             // {
             //     id: uuidv4(),
@@ -46,7 +46,7 @@ const dummyDate = [
             {
                 id: uuidv4(),
                 title: "gitの勉強",
-                deiscription: "９時から",
+                description: "９時から",
             },
             // {
             //     id: uuidv4(),

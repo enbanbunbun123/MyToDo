@@ -93,7 +93,7 @@ const Main = () => {
         <Route path='/' element={
           <DragDropContext onDragEnd={onDragEnd}>
             <Link to='/CreateTask'>
-              <button className='trello-input-button'>Add Task</button>
+              <button className='trello-input-button-addTask'>Add Task</button>
             </Link>
             <div className='trello'>
                 {data.map((section) => (
