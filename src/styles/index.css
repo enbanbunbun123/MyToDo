@@ -12,6 +12,10 @@ body {
   font-family: "M PLUS Rounded 1c";
 }
 
+a {
+  text-decoration: none;
+}
+
 .trello {
   display: flex;
   align-items: flex-start;
@@ -49,6 +53,11 @@ body {
 }
 
 .trello-input-button-addTask{
+  cursor: pointer;
+  background-color: #707070;
+  color: #e4e4e4;
+  border: none;
+  outline: none;
   font-size: 15px;
   padding: 10px 40px;
   margin-left: auto;
