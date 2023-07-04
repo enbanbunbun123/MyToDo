@@ -1,3 +1,4 @@
+import '../styles/createTask.css'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid4 } from 'uuid';
@@ -38,24 +39,27 @@ export default function CreateTask ({data, setdata}) {
 
     return (
         <>
-        <input
-            className='trello-input-text'
-            type='text'
-            value={newTask}
-            onChange={handleTaskchange}
-            placeholder='Task Title'
-        />
-        <input
-            className='trello-input-text'
-            type='text'
-            value={newDescription}
-            onChange={handleDescriptionChange}
-            placeholder='Task Description'
-        />
-        <button
-        className='trello-input-button-add'
-        onClick={handelTaskAdd}
-        >Add</button>
+        <div className='add-content'>
+            <div className='add-title'>タスクの新規作成</div>
+            <input
+                className='trello-input-text'
+                type='text'
+                value={newTask}
+                onChange={handleTaskchange}
+                placeholder='タスクの名前'
+            />
+            <textarea
+                className='trello-input-text-description'
+                type='text'
+                value={newDescription}
+                onChange={handleDescriptionChange}
+                placeholder='タスクの説明'
+            />
+            <button
+            className='trello-input-button-add'
+            onClick={handelTaskAdd}
+            >追加</button>
+        </div>
         </>
     )
 }
