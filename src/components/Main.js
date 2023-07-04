@@ -85,6 +85,21 @@ const Main = () => {
       setNewTask("");
     }
 
+    const handleTaskDelete = (sectionId, taskId) => {
+      setdata(prevData => {
+        return prevData.map(section => {
+          if(section.id=== sectionId){
+            return{
+              ...section,
+              tasks: section.tasks.filter(task => task.id !== taskId)
+            };
+          } else {
+            return section
+          }
+        });
+      });
+    };
+
   return (
     <>
     <Router>
@@ -122,7 +137,13 @@ const Main = () => {
                                     opacity: snapshot.isDragging ? "0.7" : "1",
                                   }}
                                 >
-                                  <Card>{task.title}</Card>
+                                  <Card>
+                                    {task.title}
+                                    <button 
+                                      onClick={() => handleTaskDelete(section.id, task.id)}
+                                      onMouseDown={(e) => e.stopPropagation()}>削除</button>
+                                  </Card>
+
                                 </div>
                               )}
                             </Draggable>
