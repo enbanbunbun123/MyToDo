@@ -19,6 +19,7 @@ a {
 .trello {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
 }
 
 .trello-section {
