@@ -19,6 +19,7 @@ a {
 .trello {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
 }
 
 .trello-section {
@@ -45,11 +46,6 @@ a {
   background: #60E2B8;
   border-radius: 10px;
   margin-top: 5px;
-}
-
-.trello-input-text{
-  padding: 5px;
-  margin: 5px;
 }
 
 .trello-input-button-addTask{
