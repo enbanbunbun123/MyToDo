@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CreateTask from './CreateTask';
 
-
 const Main = () => {
     const [data, setdata] = useState(dummydata);
     const [newTask, setNewTask] = useState("");
@@ -88,7 +87,7 @@ const Main = () => {
     const handleTaskDelete = (sectionId, taskId) => {
       setdata(prevData => {
         return prevData.map(section => {
-          if(section.id=== sectionId){
+          if(section.id === sectionId){
             return{
               ...section,
               tasks: section.tasks.filter(task => task.id !== taskId)
@@ -138,12 +137,26 @@ const Main = () => {
                                   }}
                                 >
                                   <Card>
-                                    {task.title}
-                                    <button 
-                                      onClick={() => handleTaskDelete(section.id, task.id)}
-                                      onMouseDown={(e) => e.stopPropagation()}>削除</button>
+                                    <div className='icons'>
+                                      <div
+                                        onClick={() => handleTaskDelete(section.id, task.id)}
+                                        onMouseDown={(e) => e.stopPropagation()}>
+                                          <img 
+                                          className='delete-icon'
+                                          src='./icon-delete.png'
+                                          alt='削除'
+                                          ></img>
+                                      </div>
+                                      <div>
+                                        <img
+                                          className='edit-icon'
+                                          src='./icon-edit.png'
+                                          alt='編集'
+                                        ></img>
+                                      </div>
+                                    </div>
+                                    <div className='task-title'>{task.title}</div>
                                   </Card>
-
                                 </div>
                               )}
                             </Draggable>
