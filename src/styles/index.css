@@ -78,4 +78,5 @@ a {
 
 .icons{
   display: flex;
+  justify-content: flex-end;
 }
