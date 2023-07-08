@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
-import App from './App';
 import Header from './components/Header';
+import Main from './components/Main';
 
 ReactDOM.render(
   <React.StrictMode>
     <Header />
-    <App />
+    <div style={{padding: "30px"}}>
+      <Main />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
