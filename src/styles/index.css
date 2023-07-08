@@ -40,7 +40,7 @@ a {
 }
 
 .card {
-  padding: 30px;
+  padding: 15px 20px;
   color: #707070;
   background: #60E2B8;
   border-radius: 10px;
@@ -60,4 +60,23 @@ a {
   display: block;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+.delete-icon{
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.edit-icon{
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.icons{
+  display: flex;
+  justify-content: flex-end;
 }
