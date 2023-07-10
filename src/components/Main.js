@@ -6,6 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CreateTask from './CreateTask';
+import EditTask from './EditTask';
 
 const Main = () => {
     const [data, setdata] = useState(dummydata);
@@ -13,8 +14,6 @@ const Main = () => {
 
     const onDragEnd = (result) => {
       const { source, destination } = result;
-
-      // if(!destination) return;
 
       // 別のカラムにタスクを移動
       if(source.droppableId !== destination.droppableId){
@@ -27,18 +26,13 @@ const Main = () => {
         const sourceTask = [...sourceCol.tasks];
         const destinationTask = [...destinationCol.tasks];
 
-        // 動かすタスクの削除
         const [removed] = sourceTask.splice(source.index, 1);
         
-        // 動かした後のカラムにタスクを追加
         destinationTask.splice(destination.index, 0, removed);
 
         const newData = [...data];
         newData[ sourceColIndex ] = { ...sourceCol, tasks: sourceTask};
         newData[ destinationColIndex ] = {...destinationCol, tasks: destinationTask};
-  
-        // data[ sourceColIndex ].tasks = sourceTask;
-        // data[ destinationColIndex ].tasks = destinationTask;
 
         setdata(newData);
       } else {
@@ -47,15 +41,14 @@ const Main = () => {
         const sourceCol = data[ sourceColIndex ];
   
         const sourceTask = [...sourceCol.tasks]
-        // タスクの削除
+
         const [removed] = sourceTask.splice(source.index, 1);
-        // タスクの追加
+
         sourceTask.splice(destination.index, 0, removed);
 
         const newData = [...data];
         newData[ sourceColIndex ] = {...sourceCol, tasks: sourceTask};
   
-        // data[ sourceColIndex ].tasks = sourceTask;
         setdata(newData);
       }
     };
@@ -70,7 +63,6 @@ const Main = () => {
 
       setdata(prevData => {
         return prevData.map(section => {
-          // if(section.id === sectionId){
           if(section.title === "今からやること"){
             return{
               ...section,
@@ -99,11 +91,27 @@ const Main = () => {
       });
     };
 
+    const handleTaskEdit = (sectionId, taskId, title, description) => {
+      setdata(prevData => {
+        return prevData.map(section => {
+          if(section.id === sectionId){
+            return{
+              ...section,
+              tasks: section.tasks.map(task => task.id === taskId ? { ...task, title, description } : task),
+            };
+          } else {
+            return section
+          }
+        });
+      });
+    };
+
   return (
     <>
     <Router>
       <Routes>
-        <Route path='/CreateTask' element={<CreateTask data={data} setdata={setdata}/>}/>   
+        <Route path='/CreateTask' element={<CreateTask data={data} setdata={setdata}/>}/>  
+        <Route path='/EditTask/:sectionId/:taskId' element={<EditTask data = {data} onTaskEdit={handleTaskEdit}/>}/> 
         <Route path='/' element={
           <DragDropContext onDragEnd={onDragEnd}>
             <Link to='/CreateTask'>
@@ -147,13 +155,16 @@ const Main = () => {
                                           alt='削除'
                                           ></img>
                                       </div>
-                                      <div>
-                                        <img
-                                          className='edit-icon'
-                                          src='./icon-edit.png'
-                                          alt='編集'
-                                        ></img>
-                                      </div>
+                                      <Link
+                                        to={`EditTask/${section.id}/${task.id}`}
+                                        onMouseDown={(e) => e.stopPropagation()}
+                                        >
+                                          <img
+                                            className='edit-icon'
+                                            src='./icon-edit.png'
+                                            alt='編集'
+                                          ></img>
+                                      </Link>
                                     </div>
                                     <div className='task-title'>{task.title}</div>
                                   </Card>
