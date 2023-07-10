@@ -14,8 +14,6 @@ const Main = () => {
     const onDragEnd = (result) => {
       const { source, destination } = result;
 
-      // if(!destination) return;
-
       // 別のカラムにタスクを移動
       if(source.droppableId !== destination.droppableId){
         const sourceColIndex = data.findIndex((e) => e.id === source.droppableId);
@@ -27,18 +25,13 @@ const Main = () => {
         const sourceTask = [...sourceCol.tasks];
         const destinationTask = [...destinationCol.tasks];
 
-        // 動かすタスクの削除
         const [removed] = sourceTask.splice(source.index, 1);
         
-        // 動かした後のカラムにタスクを追加
         destinationTask.splice(destination.index, 0, removed);
 
         const newData = [...data];
         newData[ sourceColIndex ] = { ...sourceCol, tasks: sourceTask};
         newData[ destinationColIndex ] = {...destinationCol, tasks: destinationTask};
-  
-        // data[ sourceColIndex ].tasks = sourceTask;
-        // data[ destinationColIndex ].tasks = destinationTask;
 
         setdata(newData);
       } else {
@@ -47,15 +40,14 @@ const Main = () => {
         const sourceCol = data[ sourceColIndex ];
   
         const sourceTask = [...sourceCol.tasks]
-        // タスクの削除
+
         const [removed] = sourceTask.splice(source.index, 1);
-        // タスクの追加
+
         sourceTask.splice(destination.index, 0, removed);
 
         const newData = [...data];
         newData[ sourceColIndex ] = {...sourceCol, tasks: sourceTask};
   
-        // data[ sourceColIndex ].tasks = sourceTask;
         setdata(newData);
       }
     };
@@ -70,7 +62,6 @@ const Main = () => {
 
       setdata(prevData => {
         return prevData.map(section => {
-          // if(section.id === sectionId){
           if(section.title === "今からやること"){
             return{
               ...section,
