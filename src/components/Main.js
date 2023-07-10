@@ -6,6 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CreateTask from './CreateTask';
+import EditTask from './EditTask';
 
 const Main = () => {
     const [data, setdata] = useState(dummydata);
@@ -90,11 +91,27 @@ const Main = () => {
       });
     };
 
+    const handleTaskEdit = (sectionId, taskId, title, description) => {
+      setdata(prevData => {
+        return prevData.map(section => {
+          if(section.id === sectionId){
+            return{
+              ...section,
+              tasks: section.tasks.map(task => task.id === taskId ? { ...task, title, description } : task),
+            };
+          } else {
+            return section
+          }
+        });
+      });
+    };
+
   return (
     <>
     <Router>
       <Routes>
-        <Route path='/CreateTask' element={<CreateTask data={data} setdata={setdata}/>}/>   
+        <Route path='/CreateTask' element={<CreateTask data={data} setdata={setdata}/>}/>  
+        <Route path='/EditTask/:sectionId/:taskId' element={<EditTask data = {data} onTaskEdit={handleTaskEdit}/>}/> 
         <Route path='/' element={
           <DragDropContext onDragEnd={onDragEnd}>
             <Link to='/CreateTask'>
@@ -138,13 +155,16 @@ const Main = () => {
                                           alt='削除'
                                           ></img>
                                       </div>
-                                      <div>
-                                        <img
-                                          className='edit-icon'
-                                          src='./icon-edit.png'
-                                          alt='編集'
-                                        ></img>
-                                      </div>
+                                      <Link
+                                        to={`EditTask/${section.id}/${task.id}`}
+                                        onMouseDown={(e) => e.stopPropagation()}
+                                        >
+                                          <img
+                                            className='edit-icon'
+                                            src='./icon-edit.png'
+                                            alt='編集'
+                                          ></img>
+                                      </Link>
                                     </div>
                                     <div className='task-title'>{task.title}</div>
                                   </Card>
