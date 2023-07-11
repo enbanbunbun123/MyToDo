@@ -13,20 +13,6 @@
     margin: 10px 0;
 }
 
-.trello-input-text{
-    padding: 5px;
-    margin: 5px;
-    width: 250px;
-    height: 30px;
-}
-
-.trello-input-text-description{
-    padding: 5px;
-    margin: 5px;
-    width: 250px;
-    height: 150px;
-}
-
 .trello-input-button-edit{
     margin: 10px 0 15px 0;
     cursor: pointer;
