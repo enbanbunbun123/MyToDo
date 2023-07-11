@@ -24,10 +24,22 @@ const EditTask = ({ data, onTaskEdit }) => {
     }
 
     return(
-        <div>
-            <input value={title} onChange={e => setTitle(e.target.value)}/>
-            <textarea value={description} onChange={e => setDescription(e.target.value)}/>
-            <button onClick={handleSave}>保存</button>
+        <div className='edit-content'>
+            <div className='edit-title'>タスクの編集</div>
+            <input 
+                className='trello-input-text'
+                value={title} 
+                onChange={e => setTitle(e.target.value)}
+            />
+            <textarea 
+                className='trello-input-text-description'
+                value={description} 
+                onChange={e => setDescription(e.target.value)}
+            />
+            <button 
+            className='trello-input-button-edit'
+            onClick={handleSave}
+            >変更を保存</button>
         </div>
     )
 };
