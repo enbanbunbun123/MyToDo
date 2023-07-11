@@ -1,0 +1,29 @@
+.edit-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #C0C0C0;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.edit-title{
+    color: black;
+    margin: 10px 0;
+}
+
+.trello-input-button-edit{
+    margin: 10px 0 15px 0;
+    cursor: pointer;
+    background-color: #707070;
+    color: #e4e4e4;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding: 5px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 10px;
+}
