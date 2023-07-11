@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import dummydata from "../dummyData"
 import Card from './Card';
@@ -9,8 +9,20 @@ import CreateTask from './CreateTask';
 import EditTask from './EditTask';
 
 const Main = () => {
-    const [data, setdata] = useState(dummydata);
+    const [data, setdata] = useState(() => {
+      const savedData = localStorage.getItem("data");
+      if (savedData) {
+        return JSON.parse(savedData);
+      } else {
+        return dummydata;
+      }
+    });
+
     const [newTask, setNewTask] = useState("");
+
+    useEffect(() => {
+      localStorage.setItem("data", JSON.stringify(data));
+    })
 
     const onDragEnd = (result) => {
       const { source, destination } = result;
