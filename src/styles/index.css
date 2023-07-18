@@ -30,7 +30,7 @@ a {
   margin-left: 10px;
 }
 
-.trello-section:first-child{
+.trello-section:first-child {
   margin-left: 0;
 }
 
@@ -43,12 +43,12 @@ a {
 .card {
   padding: 15px 20px;
   color: #707070;
-  background: #60E2B8;
+  background: #60e2b8;
   border-radius: 10px;
   margin-top: 5px;
 }
 
-.trello-input-button-addTask{
+.trello-input-button-addTask {
   cursor: pointer;
   background-color: #707070;
   color: #e4e4e4;
@@ -63,30 +63,30 @@ a {
   margin-bottom: 20px;
 }
 
-.delete-icon{
+.delete-icon {
   width: 15px;
   height: 15px;
   margin: 5px;
   cursor: pointer;
 }
 
-.edit-icon{
+.edit-icon {
   width: 15px;
   height: 15px;
   margin: 5px;
   cursor: pointer;
 }
 
-.icons{
+.icons {
   display: flex;
   justify-content: flex-end;
   height: 25px;
 }
 
-.task-title{
+.task-title {
   font-size: 18px;
 }
 
-.task-description{
+.task-description {
   font-size: 15px;
 }
