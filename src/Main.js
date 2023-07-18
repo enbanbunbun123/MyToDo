@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-import dummydata from "../dummyData"
-import Card from './Card';
-import {v4 as uuidv4} from 'uuid';
+import dummydata from "./dummyData"
+import Card from './components/Card';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import CreateTask from './CreateTask';
-import EditTask from './EditTask';
+import CreateTask from './components/CreateTask';
+import EditTask from './components/EditTask';
 
 const Main = () => {
     const [data, setdata] = useState(() => {
@@ -17,8 +16,6 @@ const Main = () => {
         return dummydata;
       }
     });
-
-    const [newTask, setNewTask] = useState("");
 
     useEffect(() => {
       localStorage.setItem("data", JSON.stringify(data));
@@ -64,29 +61,6 @@ const Main = () => {
         setdata(newData);
       }
     };
-
-    const handleInputChange= (e) => {
-      setNewTask(e.target.value);
-    }
-
-    const handelTaskAdd = (sectionId) => {
-      const newId = uuidv4();
-      const newDataTask = { id: newId, title: newTask };
-
-      setdata(prevData => {
-        return prevData.map(section => {
-          if(section.title === "今からやること"){
-            return{
-              ...section,
-              tasks: [...section.tasks, newDataTask]
-            }
-          } else {
-            return section
-          }
-        })
-      });
-      setNewTask("");
-    }
 
     const handleTaskDelete = (sectionId, taskId) => {
       setdata(prevData => {
@@ -156,31 +130,7 @@ const Main = () => {
                                     opacity: snapshot.isDragging ? "0.7" : "1",
                                   }}
                                 >
-                                  <Card>
-                                    <div className='icons'>
-                                      <div
-                                        onClick={() => handleTaskDelete(section.id, task.id)}
-                                        onMouseDown={(e) => e.stopPropagation()}>
-                                          <img 
-                                          className='delete-icon'
-                                          src='./icon-delete.png'
-                                          alt='削除'
-                                          ></img>
-                                      </div>
-                                      <Link
-                                        to={`EditTask/${section.id}/${task.id}`}
-                                        onMouseDown={(e) => e.stopPropagation()}
-                                        >
-                                          <img
-                                            className='edit-icon'
-                                            src='./icon-edit.png'
-                                            alt='編集'
-                                          ></img>
-                                      </Link>
-                                    </div>
-                                    <div className='task-title'>{task.title}</div>
-                                    <div className='task-description'>{task.description}</div>
-                                  </Card>
+                                  <Card task={task} sectionId={section.id} onDelete={handleTaskDelete} />
                                 </div>
                               )}
                             </Draggable>
