@@ -179,6 +179,7 @@ const Main = () => {
                                       </Link>
                                     </div>
                                     <div className='task-title'>{task.title}</div>
+                                    <div className='task-description'>{task.description}</div>
                                   </Card>
                                 </div>
                               )}

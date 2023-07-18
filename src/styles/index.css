@@ -80,4 +80,13 @@ a {
 .icons{
   display: flex;
   justify-content: flex-end;
+  height: 25px;
+}
+
+.task-title{
+  font-size: 18px;
+}
+
+.task-description{
+  font-size: 15px;
 }
