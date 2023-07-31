@@ -4,7 +4,7 @@ import "../styles/footer.css";
 function Footer() {
   return (
     <div className="footer">
-        <p>© 2023 YuhoTakahashi MyToDo</p>
+      <p>© 2023 YuhoTakahashi MyToDo</p>
     </div>
   );
 }
