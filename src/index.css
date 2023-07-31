@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.Content {
+  flex: 1;
+}
+
 body {
   background: rgb(237, 236, 236);
   height: 100vh;
@@ -16,51 +26,12 @@ a {
   text-decoration: none;
 }
 
-.trello {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.trello-section {
-  width: 400px;
-  background: #707070;
-  padding: 10px;
-  border-radius: 10px;
-  margin-left: 10px;
-}
-
-.trello-section:first-child {
-  margin-left: 0;
-}
-
-.trello-section-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 10px 0 20px;
-}
-
 .card {
   padding: 15px 20px;
   color: #707070;
   background: #60e2b8;
   border-radius: 10px;
   margin-top: 5px;
-}
-
-.trello-input-button-addTask {
-  cursor: pointer;
-  background-color: #707070;
-  color: #e4e4e4;
-  border: none;
-  outline: none;
-  font-size: 15px;
-  padding: 10px 40px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  border-radius: 10px;
-  margin-bottom: 20px;
 }
 
 .delete-icon {

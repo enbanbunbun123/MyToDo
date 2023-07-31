@@ -10,7 +10,7 @@ function Header() {
           <a href="">home</a>
         </li>
         <li className="header-content">
-          <a href="">使い方</a>
+          <a href="#">使い方</a>
         </li>
       </nav>
     </div>
