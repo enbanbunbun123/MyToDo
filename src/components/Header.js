@@ -1,13 +1,17 @@
-import '../styles/header.css'
-import React from 'react'
+import "../styles/header.css";
+import React from "react";
 
 function Header() {
   return (
-    <div className='header'>
-      <div className='App-title'>MyToDo</div>
-      <nav className='header-menu'>
-        <li className='header-content'><a>home</a></li>
-        <li className='header-content'><a>使い方</a></li>
+    <div className="header">
+      <div className="App-title">MyToDo</div>
+      <nav className="header-menu">
+        <li className="header-content">
+          <a href="">home</a>
+        </li>
+        <li className="header-content">
+          <a href="#">使い方</a>
+        </li>
       </nav>
     </div>
   );

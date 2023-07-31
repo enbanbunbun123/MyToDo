@@ -1,0 +1,63 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.Content {
+  flex: 1;
+}
+
+body {
+  background: rgb(237, 236, 236);
+  height: 100vh;
+  color: #e4e4e4;
+  line-height: 1.5;
+  font-family: "M PLUS Rounded 1c";
+}
+
+a {
+  text-decoration: none;
+}
+
+.card {
+  padding: 15px 20px;
+  color: #707070;
+  background: #60e2b8;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.delete-icon {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.edit-icon {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  height: 25px;
+}
+
+.task-title {
+  font-size: 18px;
+}
+
+.task-description {
+  font-size: 15px;
+}

@@ -1,4 +1,4 @@
-.add-content {
+.edit-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,26 +8,12 @@
   margin: auto;
 }
 
-.add-title {
+.edit-title {
   color: black;
   margin: 10px 0;
 }
 
-.trello-input-text {
-  padding: 5px;
-  margin: 5px;
-  width: 250px;
-  height: 30px;
-}
-
-.trello-input-text-description {
-  padding: 5px;
-  margin: 5px;
-  width: 250px;
-  height: 150px;
-}
-
-.trello-input-button-add {
+.trello-input-button-edit {
   margin: 10px 0 15px 0;
   cursor: pointer;
   background-color: #707070;
