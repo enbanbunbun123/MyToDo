@@ -7,10 +7,10 @@ function Header() {
       <div className="App-title">MyToDo</div>
       <nav className="header-menu">
         <li className="header-content">
-          <a href="">home</a>
+          <a href="/">home</a>
         </li>
         <li className="header-content">
-          <a href="#">使い方</a>
+          <a href="/HowTo">使い方</a>
         </li>
       </nav>
     </div>
