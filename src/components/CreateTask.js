@@ -43,6 +43,11 @@ export default function CreateTask({ data, setdata }) {
 
   return (
     <>
+      <div className="return-button">
+        <p className="trello-input-button-return" onClick={() => navigate("/")}>
+          <img src="/return-icon.png" alt="戻る"></img>
+        </p>
+      </div>
       <div className="add-content">
         <div className="add-title">タスクの新規作成</div>
         <input

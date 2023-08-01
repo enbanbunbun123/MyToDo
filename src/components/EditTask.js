@@ -1,3 +1,4 @@
+import "../styles/createTask.css";
 import "../styles/editTask.css";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -25,22 +26,29 @@ const EditTask = ({ data, onTaskEdit }) => {
   };
 
   return (
-    <div className="edit-content">
-      <div className="edit-title">タスクの編集</div>
-      <input
-        className="trello-input-text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        className="trello-input-text-description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <button className="trello-input-button-edit" onClick={handleSave}>
-        変更を保存
-      </button>
-    </div>
+    <>
+      <div className="return-button">
+        <p className="trello-input-button-return" onClick={() => navigate("/")}>
+          <img src="/return-icon.png" alt="戻る"></img>
+        </p>
+      </div>
+      <div className="edit-content">
+        <div className="edit-title">タスクの編集</div>
+        <input
+          className="trello-input-text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <textarea
+          className="trello-input-text-description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <button className="trello-input-button-edit" onClick={handleSave}>
+          変更を保存
+        </button>
+      </div>
+    </>
   );
 };
 
