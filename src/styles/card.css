@@ -1,22 +1,24 @@
 .card {
-  padding: 8px 15px;
+  padding: 5px 5px 10px 10px;
   color: #707070;
-  background: #60e2b8;
-  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+  border-radius: 5px;
   margin-top: 5px;
+  height: 80px;
 }
 
 .delete-icon {
-  width: 15px;
-  height: 15px;
-  margin: 5px;
+  width: 14px;
+  height: 14px;
+  margin: 4px;
   cursor: pointer;
 }
 
 .edit-icon {
-  width: 15px;
-  height: 15px;
-  margin: 5px;
+  width: 14px;
+  height: 14px;
+  margin: 4px;
   cursor: pointer;
 }
 
