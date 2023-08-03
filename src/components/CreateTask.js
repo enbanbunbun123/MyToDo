@@ -1,4 +1,5 @@
 import "../styles/createTask.css";
+import "../styles/modal.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid4 } from "uuid";
@@ -6,6 +7,7 @@ import { v4 as uuid4 } from "uuid";
 export default function CreateTask({ data, setdata }) {
   const [newTask, setNewTask] = useState("");
   const [newDescription, setNewDescription] = useState("");
+  const [isOpen, setIsOpen] = useState(false); 
   const navigate = useNavigate();
 
   const handleTaskchange = (e) => {
@@ -17,6 +19,11 @@ export default function CreateTask({ data, setdata }) {
   };
 
   const handelTaskAdd = () => {
+    if(newTask === "") {
+      setIsOpen(true);
+      return;
+      }
+
     const newId = uuid4();
     const newDataTask = {
       id: newId,
@@ -41,8 +48,22 @@ export default function CreateTask({ data, setdata }) {
     navigate("/");
   };
 
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
+    {isOpen && (
+        <div className="overlay">
+          <div className="modal">
+            <div className="modal-content">
+              <p className="modal-text">タスクの名前を入力してください</p>
+              <button onClick={handleClose}>閉じる</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="return-button">
         <p className="trello-input-button-return" onClick={() => navigate("/")}>
           <img src="/return-icon.png" alt="戻る"></img>
