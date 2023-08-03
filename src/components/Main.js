@@ -25,6 +25,10 @@ const Main = () => {
   const onDragEnd = (result) => {
     const { source, destination } = result;
 
+    if (!destination) {
+      return;
+    }
+
     // 別のカラムにタスクを移動
     if (source.droppableId !== destination.droppableId) {
       const sourceColIndex = data.findIndex((e) => e.id === source.droppableId);
