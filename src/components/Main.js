@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import CreateTask from "./CreateTask";
 import EditTask from "./EditTask";
 import "../styles/main.css";
+import Graph from "./Graph";
 
 const Main = () => {
   const [data, setdata] = useState(() => {
@@ -107,77 +108,79 @@ const Main = () => {
   return (
     <>
       <div className="Content">
-        <Router>
-          <Routes>
-            <Route
-              path="/CreateTask"
-              element={<CreateTask data={data} setdata={setdata} />}
-            />
-            <Route
-              path="/EditTask/:sectionId/:taskId"
-              element={<EditTask data={data} onTaskEdit={handleTaskEdit} />}
-            />
-            <Route
-              path="/"
-              element={
-                <DragDropContext onDragEnd={onDragEnd}>
-                  <Link to="/CreateTask">
-                    <button className="trello-input-button-addTask">
-                      タスクを追加する
-                    </button>
-                  </Link>
-                  <div className="trello">
-                    {data.map((section) => (
-                      <Droppable key={section.id} droppableId={section.id}>
-                        {(provided) => (
-                          <div
-                            className="trello-section"
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                          >
-                            <div className="trello-setion-title">
-                              {section.title}
-                            </div>
-                            <div className="trello-section-content">
-                              {section.tasks.map((task, index) => (
-                                <Draggable
-                                  draggableId={task.id}
-                                  index={index}
-                                  key={task.id}
-                                >
-                                  {(provided, snapshot) => (
-                                    <div
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      style={{
-                                        ...provided.draggableProps.style,
-                                        opacity: snapshot.isDragging
-                                          ? "0.7"
-                                          : "1",
-                                      }}
-                                    >
-                                      <Card
-                                        task={task}
-                                        sectionId={section.id}
-                                        onDelete={handleTaskDelete}
-                                      />
-                                    </div>
-                                  )}
-                                </Draggable>
-                              ))}
-                              {provided.placeholder}
-                            </div>
+        <Routes>
+          <Route
+            path="/CreateTask"
+            element={<CreateTask data={data} setdata={setdata} />}
+          />
+          <Route
+            path="/EditTask/:sectionId/:taskId"
+            element={<EditTask data={data} onTaskEdit={handleTaskEdit} />}
+          />
+          <Route
+            path="/Graph"
+            element={<Graph data={data} />}
+          />
+          <Route
+            path="/"
+            element={
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Link to="/CreateTask">
+                  <button className="trello-input-button-addTask">
+                    タスクを追加する
+                  </button>
+                </Link>
+                <div className="trello">
+                  {data.map((section) => (
+                    <Droppable key={section.id} droppableId={section.id}>
+                      {(provided) => (
+                        <div
+                          className="trello-section"
+                          ref={provided.innerRef}
+                          {...provided.droppableProps}
+                        >
+                          <div className="trello-setion-title">
+                            {section.title}
                           </div>
-                        )}
-                      </Droppable>
-                    ))}
-                  </div>
-                </DragDropContext>
-              }
-            />
-          </Routes>
-        </Router>
+                          <div className="trello-section-content">
+                            {section.tasks.map((task, index) => (
+                              <Draggable
+                                draggableId={task.id}
+                                index={index}
+                                key={task.id}
+                              >
+                                {(provided, snapshot) => (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    style={{
+                                      ...provided.draggableProps.style,
+                                      opacity: snapshot.isDragging
+                                        ? "0.7"
+                                        : "1",
+                                    }}
+                                  >
+                                    <Card
+                                      task={task}
+                                      sectionId={section.id}
+                                      onDelete={handleTaskDelete}
+                                    />
+                                  </div>
+                                )}
+                              </Draggable>
+                            ))}
+                            {provided.placeholder}
+                          </div>
+                        </div>
+                      )}
+                    </Droppable>
+                  ))}
+                </div>
+              </DragDropContext>
+            }
+          />
+        </Routes>
       </div>
     </>
   );

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/header.css";
 import React from "react";
 
@@ -7,10 +8,13 @@ function Header() {
       <div className="App-title">MyToDo</div>
       <nav className="header-menu">
         <li className="header-content">
-          <a href="/">home</a>
+          <Link to="/HowTo">使い方</Link>
         </li>
         <li className="header-content">
-          <a href="/HowTo">使い方</a>
+          <Link to="/">home</Link>
+        </li>
+        <li className="header-content"> 
+          <Link to="/Graph">達成グラフ</Link>
         </li>
       </nav>
     </div>
