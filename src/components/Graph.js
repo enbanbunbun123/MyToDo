@@ -33,6 +33,7 @@ const BarChart = ({taskCount}) => {
                 type: 'linear',
                 ticks: {
                     beginAtZero: true,
+                    stepSize: 1,
                 }
             }
         }
