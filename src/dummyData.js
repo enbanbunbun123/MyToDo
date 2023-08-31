@@ -47,6 +47,7 @@ const dummyDate = [
         id: uuidv4(),
         title: "gitの勉強",
         description: "９時から",
+        completedDate: "2023-08-15"  
       },
       // {
       //     id: uuidv4(),

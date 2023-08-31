@@ -2,12 +2,18 @@ import "../styles/createTask.css";
 import "../styles/editTask.css";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Modal from "./Modal";
 
 const EditTask = ({ data, onTaskEdit }) => {
   const { sectionId, taskId } = useParams();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [isOpen, setIsOpen] = useState(false); 
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const section = data.find((section) => section.id === sectionId);
@@ -21,12 +27,19 @@ const EditTask = ({ data, onTaskEdit }) => {
   }, [sectionId, taskId, data]);
 
   const handleSave = () => {
+    if (title === "") {
+      setIsOpen(true);
+      return;
+    }
     onTaskEdit(sectionId, taskId, title, description);
     navigate("/");
   };
 
   return (
     <>
+    {isOpen && (
+      <Modal handleClose={handleClose}/>
+    )}
       <div className="return-button">
         <p className="trello-input-button-return" onClick={() => navigate("/")}>
           <img src="/return-icon.png" alt="戻る"></img>

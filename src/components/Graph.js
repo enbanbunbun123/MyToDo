@@ -4,6 +4,11 @@ import { Chart, CategoryScale, LinearScale, BarElement } from 'chart.js';
 
 Chart.register(CategoryScale, LinearScale, BarElement);
 
+const countCompletedTasks = (data) => {
+    const completedTasksColumn = data.find(column => column.title === "完了済み");
+    return completedTasksColumn ? completedTasksColumn.tasks.length : 0;
+}
+
 const BarChart = ({taskCount}) => {
     const chartData = {
         labels: ["完了済み"],
@@ -22,13 +27,18 @@ const BarChart = ({taskCount}) => {
                 type: 'category',
                 ticks: {
                     beginAtZero: true,
-                }
+                    color: '#fff',
+                },
+
             },
             y: {
                 type: 'linear',
                 ticks: {
                     beginAtZero: true,
-                }
+                    color: '#fff',
+                    stepSize: 1,
+                },
+        
             }
         }
     };
@@ -37,12 +47,15 @@ const BarChart = ({taskCount}) => {
 };
 
 const Graph = ({data}) => {
-    const completedTasks = data.find(column => column.title === "完了済み");
+    const completedTaskCount = countCompletedTasks(data);
 
     return (
-        <div>
-            <BarChart taskCount={completedTasks ? completedTasks.tasks.length : 0} />
-        </div>
+        <>
+            <div>達成グラフ</div>
+            <div>
+                <BarChart taskCount={completedTaskCount} />
+            </div>
+        </>
     );
 };
 
