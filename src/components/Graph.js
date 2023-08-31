@@ -27,14 +27,18 @@ const BarChart = ({taskCount}) => {
                 type: 'category',
                 ticks: {
                     beginAtZero: true,
-                }
+                    color: '#fff',
+                },
+
             },
             y: {
                 type: 'linear',
                 ticks: {
                     beginAtZero: true,
+                    color: '#fff',
                     stepSize: 1,
-                }
+                },
+        
             }
         }
     };
@@ -46,10 +50,12 @@ const Graph = ({data}) => {
     const completedTaskCount = countCompletedTasks(data);
 
     return (
-        <div>
-            {/* <BarChart taskCount={completedTasks ? completedTasks.tasks.length : 0} /> */}
-            <BarChart taskCount={completedTaskCount} />
-        </div>
+        <>
+            <div>達成グラフ</div>
+            <div>
+                <BarChart taskCount={completedTaskCount} />
+            </div>
+        </>
     );
 };
 
