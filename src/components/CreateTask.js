@@ -3,6 +3,7 @@ import "../styles/modal.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid4 } from "uuid";
+import Modal from "./Modal";
 
 export default function CreateTask({ data, setdata }) {
   const [newTask, setNewTask] = useState("");
@@ -16,6 +17,10 @@ export default function CreateTask({ data, setdata }) {
 
   const handleDescriptionChange = (e) => {
     setNewDescription(e.target.value);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
   const handelTaskAdd = () => {
@@ -48,21 +53,10 @@ export default function CreateTask({ data, setdata }) {
     navigate("/");
   };
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
   return (
     <>
     {isOpen && (
-        <div className="overlay">
-          <div className="modal">
-            <div className="modal-content">
-              <p className="modal-text">「タスクの名前」は入力必須項目です。</p>
-              <button onClick={handleClose}>閉じる</button>
-            </div>
-          </div>
-        </div>
+      <Modal handleClose={handleClose}/>
       )}
       <div className="return-button">
         <p className="trello-input-button-return" onClick={() => navigate("/")}>
