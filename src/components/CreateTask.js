@@ -22,7 +22,7 @@ export default function CreateTask({ data, setdata }) {
     if(newTask === "") {
       setIsOpen(true);
       return;
-      }
+    }
 
     const newId = uuid4();
     const newDataTask = {
@@ -58,7 +58,7 @@ export default function CreateTask({ data, setdata }) {
         <div className="overlay">
           <div className="modal">
             <div className="modal-content">
-              <p className="modal-text">タスクの名前を入力してください</p>
+              <p className="modal-text">「タスクの名前」は入力必須項目です。</p>
               <button onClick={handleClose}>閉じる</button>
             </div>
           </div>
