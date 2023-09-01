@@ -10,6 +10,7 @@ import "../styles/main.css";
 import Graph from "./Graph";
 
 const Main = () => {
+  const [graphData, setGraphData] = useState([]);
   const [data, setdata] = useState(() => {
     const savedData = localStorage.getItem("data");
     if (savedData) {
@@ -105,6 +106,30 @@ const Main = () => {
     });
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const completedColumn = data.find((column) => column.title === "完了済み");
+      const completedCount = completedColumn ? completedColumn.tasks.length : 0;
+
+      setGraphData((prevData) => [
+        ...prevData,
+        { data: new Date().toLocaleDateString(), count: completedCount },
+      ]);
+
+      const newData = data.map((column) => 
+        column.title === "完了済み"
+          ? { ...column, tasks: [] }
+          : column
+      );
+      setdata(newData);
+
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [data]);
+
+  // console.log(graphData);
+
   return (
     <>
       <div className="Content">
@@ -119,7 +144,7 @@ const Main = () => {
           />
           <Route
             path="/Graph"
-            element={<Graph data={data} />}
+            element={<Graph data={graphData} />}
           />
           <Route
             path="/"
