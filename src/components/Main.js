@@ -11,6 +11,7 @@ import Graph from "./Graph";
 
 const Main = () => {
   const [graphData, setGraphData] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [data, setdata] = useState(() => {
     const savedData = localStorage.getItem("data");
     if (savedData) {
@@ -127,8 +128,16 @@ const Main = () => {
 
     return () => clearInterval(interval);
   }, [data]);
-  
-  console.log(graphData);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  },[]);
+
   return (
     <>
       <div className="Content">
@@ -162,6 +171,9 @@ const Main = () => {
                           className="trello-section"
                           ref={provided.innerRef}
                           {...provided.droppableProps}
+                          style={{
+                            display: (section.title === '今後やること' && windowWidth <= 600) ? 'none' : 'block'
+                          }}
                         >
                           <div className="trello-section-title">
                             {section.title}
