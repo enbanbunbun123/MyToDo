@@ -37,9 +37,7 @@
 }
 
 .trello-section-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 10px 0 20px;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -50,5 +48,14 @@
 @media screen and (max-width: 600px) {
   .Content{
     padding: 20px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .trello-input-button-addTask {
+    font-size: 12px;
+  }
+
+  .trello-section-title {
+    font-size: 12px;
   }
 }

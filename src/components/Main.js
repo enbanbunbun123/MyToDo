@@ -10,6 +10,8 @@ import "../styles/main.css";
 import Graph from "./Graph";
 
 const Main = () => {
+  const [graphData, setGraphData] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [data, setdata] = useState(() => {
     const savedData = localStorage.getItem("data");
     if (savedData) {
@@ -105,6 +107,37 @@ const Main = () => {
     });
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const completedColumn = data.find((column) => column.title === "完了済み");
+      const completedCount = completedColumn ? completedColumn.tasks.length : 0;
+
+      setGraphData((prevData) => [
+        ...prevData,
+        { data: new Date().toLocaleDateString(), count: completedCount },
+      ]);
+
+      const newData = data.map((column) => 
+        column.title === "完了済み"
+          ? { ...column, tasks: [] }
+          : column
+      );
+      setdata(newData);
+
+    }, 24 * 60 * 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, [data]);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  },[]);
+
   return (
     <>
       <div className="Content">
@@ -119,7 +152,7 @@ const Main = () => {
           />
           <Route
             path="/Graph"
-            element={<Graph data={data} />}
+            element={<Graph data={graphData} />}
           />
           <Route
             path="/"
@@ -138,8 +171,11 @@ const Main = () => {
                           className="trello-section"
                           ref={provided.innerRef}
                           {...provided.droppableProps}
+                          style={{
+                            display: (section.title === '今後やること' && windowWidth <= 600) ? 'none' : 'block'
+                          }}
                         >
-                          <div className="trello-setion-title">
+                          <div className="trello-section-title">
                             {section.title}
                           </div>
                           <div className="trello-section-content">
