@@ -9,9 +9,9 @@ function Header() {
         <img className="header-box-logo" src="./box-logo.png" alt="My ToDo"></img>
       </div>
       <nav className="header-menu">
-        <li className="header-content">
+        {/* <li className="header-content">
           <Link to="/HowTo">使い方</Link>
-        </li>
+        </li> */}
         <li className="header-content">
           <Link to="/">home</Link>
         </li>
