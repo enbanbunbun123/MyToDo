@@ -123,13 +123,12 @@ const Main = () => {
       );
       setdata(newData);
 
-    }, 10000);
+    }, 24 * 60 * 60 * 1000);
 
     return () => clearInterval(interval);
   }, [data]);
-
-  // console.log(graphData);
-
+  
+  console.log(graphData);
   return (
     <>
       <div className="Content">
