@@ -163,7 +163,7 @@ const Main = () => {
                           ref={provided.innerRef}
                           {...provided.droppableProps}
                         >
-                          <div className="trello-setion-title">
+                          <div className="trello-section-title">
                             {section.title}
                           </div>
                           <div className="trello-section-content">
