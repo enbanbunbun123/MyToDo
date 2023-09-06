@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import dummydata from "../dummyData";
 import Card from "./Card";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import CreateTask from "./CreateTask";
 import EditTask from "./EditTask";
@@ -36,7 +36,7 @@ const Main = () => {
     if (source.droppableId !== destination.droppableId) {
       const sourceColIndex = data.findIndex((e) => e.id === source.droppableId);
       const destinationColIndex = data.findIndex(
-        (e) => e.id === destination.droppableId,
+        (e) => e.id === destination.droppableId
       );
 
       const sourceCol = data[sourceColIndex];
@@ -97,7 +97,7 @@ const Main = () => {
           return {
             ...section,
             tasks: section.tasks.map((task) =>
-              task.id === taskId ? { ...task, title, description } : task,
+              task.id === taskId ? { ...task, title, description } : task
             ),
           };
         } else {
@@ -108,23 +108,27 @@ const Main = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const completedColumn = data.find((column) => column.title === "完了済み");
-      const completedCount = completedColumn ? completedColumn.tasks.length : 0;
+    const interval = setInterval(
+      () => {
+        const completedColumn = data.find(
+          (column) => column.title === "完了済み"
+        );
+        const completedCount = completedColumn
+          ? completedColumn.tasks.length
+          : 0;
 
-      setGraphData((prevData) => [
-        ...prevData,
-        { data: new Date().toLocaleDateString(), count: completedCount },
-      ]);
+        setGraphData((prevData) => [
+          ...prevData,
+          { data: new Date().toLocaleDateString(), count: completedCount },
+        ]);
 
-      const newData = data.map((column) => 
-        column.title === "完了済み"
-          ? { ...column, tasks: [] }
-          : column
-      );
-      setdata(newData);
-
-    }, 24 * 60 * 60 * 1000);
+        const newData = data.map((column) =>
+          column.title === "完了済み" ? { ...column, tasks: [] } : column
+        );
+        setdata(newData);
+      },
+      24 * 60 * 60 * 1000
+    );
 
     return () => clearInterval(interval);
   }, [data]);
@@ -135,8 +139,8 @@ const Main = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-    }
-  },[]);
+    };
+  }, []);
 
   return (
     <>
@@ -150,10 +154,7 @@ const Main = () => {
             path="/EditTask/:sectionId/:taskId"
             element={<EditTask data={data} onTaskEdit={handleTaskEdit} />}
           />
-          <Route
-            path="/Graph"
-            element={<Graph data={graphData} />}
-          />
+          <Route path="/Graph" element={<Graph data={graphData} />} />
           <Route
             path="/"
             element={
@@ -172,7 +173,11 @@ const Main = () => {
                           ref={provided.innerRef}
                           {...provided.droppableProps}
                           style={{
-                            display: (section.title === '今後やること' && windowWidth <= 600) ? 'none' : 'block'
+                            display:
+                              section.title === "今後やること" &&
+                              windowWidth <= 600
+                                ? "none"
+                                : "block",
                           }}
                         >
                           <div className="trello-section-title">
